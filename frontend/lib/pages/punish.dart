@@ -104,60 +104,51 @@ class _PunishPageState extends State<PunishPage> {
             ],
           ),
           actions: [
-            Row(
-              children: [
-                ElevatedButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 40.0, vertical: 12.0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    textStyle:
-                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.w900),
-                    backgroundColor: Color.fromARGB(255, 218, 8, 61),
-                  ),
-                  child: Text("Cancel"),
+            ElevatedButton(
+              onPressed: () => Navigator.of(context).pop(),
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 12.0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
                 ),
-                SizedBox(
-                  width: 1.0,
-                ),
-                ElevatedButton(
-                  onPressed: () async {
-                    try {
-                      // Delete the car
-                      final deleteResponse = await http.delete(
-                        Uri.parse('http://localhost:3000/punish/$carId'),
-                      );
+                textStyle:
+                    TextStyle(fontSize: 18.0, fontWeight: FontWeight.w900),
+                backgroundColor: Color.fromARGB(255, 218, 8, 61),
+              ),
+              child: Text("Cancel"),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                try {
+                  // Delete the car
+                  final deleteResponse = await http.delete(
+                    Uri.parse('http://localhost:3000/punish/$carId'),
+                  );
 
-                      if (deleteResponse.statusCode == 200) {
-                        await _fetchData();
-                        Navigator.of(context).pop();
-                      } else {
-                        print(
-                            'Failed to delete parked car: ${deleteResponse.body}');
-                      }
-                    } catch (e) {
-                      print('Error stopping parking: $e');
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 40.0, vertical: 12.0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    textStyle:
-                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.w900),
-                    backgroundColor: Color.fromARGB(255, 18, 228, 25),
-                  ),
-                  child: Text("Pay"),
+                  if (deleteResponse.statusCode == 200) {
+                    await _fetchData();
+                    Navigator.of(context).pop();
+                  } else {
+                    print(
+                        'Failed to delete parked car: ${deleteResponse.body}');
+                  }
+                } catch (e) {
+                  print('Error stopping parking: $e');
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 12.0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
                 ),
-              ],
-            )
+                textStyle:
+                    TextStyle(fontSize: 18.0, fontWeight: FontWeight.w900),
+                backgroundColor: Color.fromARGB(255, 18, 228, 25),
+              ),
+              child: Text("Pay"),
+            ),
           ],
         );
       },
@@ -187,7 +178,7 @@ class _PunishPageState extends State<PunishPage> {
                   return ListTile(
                     title: Text(car.carNumber,
                         style: TextStyle(color: Colors.white)),
-                    subtitle: Column(
+                    subtitle: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('First Name: ${car.firstName}',
