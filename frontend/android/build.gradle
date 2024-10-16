@@ -1,18 +1,22 @@
 allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
+  repositories {
+    google()
+    mavenCentral()
+  }
 }
 
 rootProject.buildDir = "../build"
 subprojects {
-    project.buildDir = "${rootProject.buildDir}/${project.name}"
+  project.buildDir = "${rootProject.buildDir}/${project.name}"
 }
+
+// Add the ext.kotlin_version property here:
+ext.kotlin_version = '1.7.21'  // Update the version if needed
+
 subprojects {
-    project.evaluationDependsOn(":app")
+  project.evaluationDependsOn(":app")
 }
 
 tasks.register("clean", Delete) {
-    delete rootProject.buildDir
+  delete rootProject.buildDir
 }

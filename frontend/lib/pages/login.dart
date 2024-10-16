@@ -12,7 +12,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _formKey = GlobalKey<FormState>(); // Added form key for validation
+  final _formKey = GlobalKey<FormState>();
 
   Future<void> login() async {
     if (_formKey.currentState?.validate() ?? false) {
@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
       final email = _emailController.text;
       final password = _passwordController.text;
 
-      final String serverUrl = 'http://localhost:3000/user/login';
+      const String serverUrl = 'https://carparking-rfuc.vercel.app/user/login';
 
       final Map<String, String> requestHeaders = {
         'Content-Type': 'application/json',
@@ -46,18 +46,18 @@ class _LoginPageState extends State<LoginPage> {
           // Unauthorized status code
           print('Invalid credentials');
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Invalid email or password')),
+            const SnackBar(content: Text('Invalid email or password')),
           );
         } else {
           print('Failed to login: ${response.body}');
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Login failed')),
+            const SnackBar(content: Text('Login failed')),
           );
         }
       } catch (e) {
         print('Error: $e');
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('An error occurred')),
+          const SnackBar(content: Text('An error occurred')),
         );
       }
     }
@@ -67,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Color.fromARGB(255, 18, 228, 25),
+        color: const Color.fromARGB(255, 18, 228, 25),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Form(
@@ -83,11 +83,11 @@ class _LoginPageState extends State<LoginPage> {
                     fit: BoxFit.fill,
                   ),
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 TextFormField(
                   controller: _emailController,
-                  style: TextStyle(color: Colors.white),
-                  decoration: InputDecoration(
+                  style: const TextStyle(color: Colors.white),
+                  decoration: const InputDecoration(
                     labelText: "Email",
                     labelStyle: TextStyle(color: Colors.white),
                     border: OutlineInputBorder(
@@ -108,11 +108,11 @@ class _LoginPageState extends State<LoginPage> {
                     return null;
                   },
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 TextFormField(
                   controller: _passwordController,
-                  style: TextStyle(color: Colors.white),
-                  decoration: InputDecoration(
+                  style: const TextStyle(color: Colors.white),
+                  decoration: const InputDecoration(
                     labelText: "Password",
                     labelStyle: TextStyle(color: Colors.white),
                     border: OutlineInputBorder(
@@ -133,30 +133,30 @@ class _LoginPageState extends State<LoginPage> {
                     return null;
                   },
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 ElevatedButton(
                   onPressed: login,
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 40.0, vertical: 12.0),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 40.0, vertical: 12.0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
-                    textStyle:
-                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.w900),
-                    backgroundColor: Color.fromARGB(255, 218, 8, 61),
+                    textStyle: const TextStyle(
+                        fontSize: 18.0, fontWeight: FontWeight.w900),
+                    backgroundColor: const Color.fromARGB(255, 218, 8, 61),
                   ),
-                  child: Text("Login"),
+                  child: const Text("Login"),
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 TextButton(
                   onPressed: () => Navigator.pushNamed(context, "/signup"),
                   style: TextButton.styleFrom(
-                    foregroundColor: Color.fromARGB(255, 8, 64, 218),
-                    textStyle: TextStyle(fontSize: 16.0),
+                    foregroundColor: const Color.fromARGB(255, 8, 64, 218),
+                    textStyle: const TextStyle(fontSize: 16.0),
                   ),
-                  child: Text("Don't have an account?"),
+                  child: const Text("Don't have an account?"),
                 ),
               ],
             ),

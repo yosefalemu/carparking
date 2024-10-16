@@ -19,7 +19,7 @@ class _SignupPageState extends State<SignupPage> {
     final password = _passwordController.text;
     final companyName = _companyNameController.text;
 
-    final String serverUrl = 'http://localhost:3000/user/register';
+    final String serverUrl = 'https://carparking-rfuc.vercel.app/user/register';
 
     final Map<String, String> requestHeaders = {
       'Content-Type': 'application/json',
